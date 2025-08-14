@@ -17,6 +17,9 @@ Here are the projects included in this portfolio:
 
 Each project folder contains a Jupyter Notebook (`.ipynb`) with the complete analysis and the corresponding dataset (`.csv`). For more detailed information, please refer to the `README.md` file within each project's directory.
 
+4.  **[Diamonds Dataset EDA](./DiamondsEDA&Regression/)**
+   -    An exploratory data analysis of the Diamonds dataset, focusing on the relationship between diamond features (such as carat, cut, color, and clarity) and price. The project includes visualizations to highlight trends, correlations, and distributions within the dataset. Special emphasis is placed on understanding how different categorical and numerical attributes affect diamond pricing.
+
 ## Technologies Used
 
 -   Python

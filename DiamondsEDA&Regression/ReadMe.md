@@ -1,3 +1,82 @@
-{“name”: “diamond_price_prediction”, “type”: “document”, “content”: “# Diamond Price Prediction\n\nBu proje, Elmas fiyatlarını tahmin etme üzerine bir makine öğrenimi çalışmasıdır. diamonds.csv veri seti kullanılarak farklı regresyon algoritmaları uygulanmış, modellerin performansları karşılaştırılmış ve hiperparametre optimizasyonu yapılmıştır.\n\n—\n\n## 📂 Proje İçeriği\n\n1. Veri Ön İşleme (Data Preprocessing)\n   - Unnamed: 0 sütunu çıkarıldı.\n   - x, y, z sütunlarında 0 olan hatalı değerler çıkarıldı.\n   - Uç değerler (outliers) temizlendi:\n     - depth < 45 veya depth > 75 olanlar çıkarıldı.\n     - table < 40 veya table > 75 olanlar çıkarıldı.\n     - y > 20 olanlar çıkarıldı.\n     - z > 30 veya z < 2 olanlar çıkarıldı.\n\n2. Keşifsel Veri Analizi (EDA)\n   - Seaborn kullanılarak scatter plot ve pairplot görselleştirmeleri yapıldı.\n   - cut, color, clarity kategorik sütunlarının dağılımları incelendi.\n\n3. Veri Dönüştürme\n   - Kategorik değişkenler (cut, color, clarity) Label Encoding yöntemiyle sayısallaştırıldı.\n   - Özellikler StandardScaler kullanılarak ölçeklendirildi.\n\n4. Modelleme\n   - Linear Regression uygulandı.\n   - Support Vector Regression (SVR) uygulandı.\n   - Modellerin performansı aşağıdaki metriklerle ölçüldü:\n     - Mean Absolute Error (MAE)\n     - Mean Squared Error (MSE)\n     - R² Score\n\n5. Hiperparametre Optimizasyonu\n   - GridSearchCV ile SVR için hiperparametre araması yapıldı:\n     python\n     param_grid = {\n         \"kernel\": [\"linear\", \"rbf\"],\n         \"C\": [0.1, 1, 10, 100, 1000],\n         \"gamma\": [1, 0.01, 0.001]\n     }\n     \n\n—\n\n## 📊 Sonuçlar\n\n### Linear Regression\n- MAE: 867.77\n- MSE: 1,849,507\n- R² Score: 0.8849 ✅ (yüksek doğruluk)\n\n### Support Vector Regression (varsayılan parametrelerle)\n- MAE: 1397.85\n- MSE: 8,151,981\n- R² Score: 0.4926 ❌ (düşük performans)\n\nGridSearchCV ile optimize edilmiş SVR sonuçları README’ye eklenebilir.\n\n—\n\n## 🚀 Kullanım\n\n### Gereksinimler\nbash\npip install pandas numpy matplotlib seaborn scikit-learn\n\n\n### Çalıştırma\nbash\npython diamond_price_prediction.py\n\n\n—\n\n## 📌 Notlar\n- Linear Regression modeli, SVR modeline göre çok daha iyi sonuçlar vermiştir.\n- SVR’nin performansını artırmak için kernel, C ve gamma parametreleri GridSearchCV ile optimize edilmelidir.\n- Daha karmaşık modeller (RandomForest, GradientBoosting, XGBoost) de test edilerek karşılaştırılabilir.\n\n—\n\n## 📖 Öğrenilenler\n- Veri temizleme ve aykırı değerlerin çıkarılmasının model performansı üzerindeki etkisi.\n- Kategorik verilerin Label Encoding ile dönüştürülmesi.\n- Özellik ölçekleme (StandardScaler) regresyon modellerinde kritik öneme sahiptir.\n- Linear Regression, bu veri setinde SVR’den daha iyi çalışmıştır.\n- Hiperparametre optimizasyonu olmadan SVR düşük performans göstermektedir.\n\n—\n\n✍️ Hazırlayan: [Senin İsmin]”}
+# 💎 Diamonds Price Prediction Project
 
-{“name”: “diamond_price_prediction”, “type”: “document”, “content”: “# Diamond Price Prediction\n\nBu proje, Elmas fiyatlarını tahmin etme üzerine bir makine öğrenimi çalışmasıdır. diamonds.csv veri seti kullanılarak farklı regresyon algoritmaları uygulanmış, modellerin performansları karşılaştırılmış ve hiperparametre optimizasyonu yapılmıştır.\n\n—\n\n## 📂 Proje İçeriği\n\n1. Veri Ön İşleme (Data Preprocessing)\n   - Unnamed: 0 sütunu çıkarıldı.\n   - x, y, z sütunlarında 0 olan hatalı değerler çıkarıldı.\n   - Uç değerler (outliers) temizlendi:\n     - depth < 45 veya depth > 75 olanlar çıkarıldı.\n     - table < 40 veya table > 75 olanlar çıkarıldı.\n     - y > 20 olanlar çıkarıldı.\n     - z > 30 veya z < 2 olanlar çıkarıldı.\n\n2. Keşifsel Veri Analizi (EDA)\n   - Seaborn kullanılarak scatter plot ve pairplot görselleştirmeleri yapıldı.\n   - cut, color, clarity gibi kategorik değişkenlerin dağılımları incelendi.\n\n3. Özellik Mühendisliği (Feature Engineering)\n   - Bağımsız değişkenler (X) ve hedef değişken (y = price) ayrıldı.\n   - Kategorik sütunlar (cut, color, clarity) Label Encoding ile sayısal değerlere dönüştürüldü.\n   - Sayısal özellikler StandardScaler ile ölçeklendirildi.\n\n4. Modelleme (Modeling)\n   - Linear Regression uygulandı:\n     - MAE: 867.77\n     - MSE: 1,849,507.27\n     - R²: 0.884\n   - Support Vector Regression (SVR) uygulandı:\n     - MAE: 1397.85\n     - MSE: 8,151,981.89\n     - R²: 0.492\n\n5. Hiperparametre Optimizasyonu (Hyperparameter Tuning)\n   - GridSearchCV ile SVR için parametre taraması yapıldı:\n     python\n     param_grid = {\n         \"kernel\": [\"linear\", \"rbf\"],\n         \"C\": [0.1, 1, 10, 100, 1000],\n         \"gamma\": [1, 0.01, 0.001]\n     }\n     \n   - En iyi parametreler ve performans değerleri elde edildi.\n\n—\n\n## ⚙️ Kullanılan Teknolojiler\n- Python 3\n- Pandas (Veri işleme)\n- NumPy (Matematiksel işlemler)\n- Matplotlib & Seaborn (Görselleştirme)\n- Scikit-learn (Makine öğrenimi modelleri ve preprocessing)\n\n—\n\n## 🚀 Çalıştırma\n\nProjeyi çalıştırmak için aşağıdaki adımları takip edebilirsiniz:\n\nbash\n# Gerekli kütüphaneleri yükleyin\npip install pandas numpy matplotlib seaborn scikit-learn\n\n# Jupyter Notebook veya Python dosyasını çalıştırın\npython diamonds_prediction.py\n\n\n—\n\n## 📊 Sonuç\n- Linear Regression, elmas fiyatlarını tahmin etmede oldukça başarılı sonuçlar vermiştir (R² = 0.88).\n- SVR, varsayılan parametrelerle zayıf performans göstermiştir. Ancak hiperparametre optimizasyonu ile geliştirilebilir.\n\n—\n\n## ✨ Gelecek Çalışmalar\n- One-Hot Encoding kullanarak kategorik değişkenlerin farklı temsilleri denenebilir.\n- Daha karmaşık modeller (Random Forest, XGBoost, Neural Networks) uygulanabilir.\n- Özellik mühendisliği ile yeni değişkenler (ör. volume = x * y * z) eklenebilir.”}
+## 📌 Project Overview
+The aim of this project is to **predict the price of diamonds** based on their characteristics using **Machine Learning algorithms**.  
+We use the **Diamonds Dataset** which includes various features such as `carat`, `cut`, `color`, `clarity`, `depth`, and `table`.  
+
+This project demonstrates:
+- Data preprocessing
+- Feature engineering
+- Visualization
+- Model training & evaluation
+- Comparison of regression algorithms
+
+---
+
+## 📂 Dataset Information
+
+The dataset is commonly used for regression tasks and contains **53,940 rows** and **10 features**.
+
+| Feature   | Description |
+|-----------|-------------|
+| `carat`   | Weight of the diamond (0.2–5.01) |
+| `cut`     | Quality of the cut (Fair, Good, Very Good, Premium, Ideal) |
+| `color`   | Diamond color, from J (worst) to D (best) |
+| `clarity` | Measurement of diamond clarity (I1, SI2, SI1, VS2, VS1, VVS2, VVS1, IF) |
+| `depth`   | Total depth percentage = (z / mean(x, y)) * 100 |
+| `table`   | Width of the top of the diamond relative to widest point (43–95) |
+| `x`       | Length in mm (0–10.74) |
+| `y`       | Width in mm (0–58.9) |
+| `z`       | Depth in mm (0–31.8) |
+| `price`   | Price in USD (326–18,823) |
+
+---
+
+## 🔧 Data Preprocessing
+
+### 1. Handling Missing & Outlier Values
+- Removed rows with invalid dimensions (`x`, `y`, `z` ≤ 0).
+- Dropped extreme outliers in `depth` and `table`.
+
+| Condition | Action |
+|-----------|--------|
+| `depth < 45` or `depth > 75` | Row dropped |
+| `table < 40` or `table > 75` | Row dropped |
+| `y > 20` | Row dropped |
+| `z > 30` or `z < 2` | Row dropped |
+
+---
+
+### 2. Encoding Categorical Features
+- `cut`, `color`, `clarity` converted using **One-Hot Encoding** and **Label Encoding** for testing performance differences.
+
+| Encoding | Explanation | Example |
+|----------|-------------|---------|
+| **Label Encoding** | Converts categories to integer values. | `cut: Ideal → 0, Premium → 1 ...` |
+| **One-Hot Encoding** | Creates binary columns for each category. | `cut_Ideal, cut_Premium, ...` |
+
+---
+
+### 3. Feature Engineering
+- Added polynomial and interaction features:
+  - `carat^2`, `depth * table`, `x*y*z`
+- Normalized continuous variables using **StandardScaler**.
+
+---
+
+## 📊 Data Visualization
+
+### Example: Price vs Carat
+- Strong positive correlation between carat and price.
+
+---
+
+## 🤖 Models Used
+
+| Model | R² Score | RMSE |
+|-------|----------|------|
+| **Linear Regression** | 0.88 | 1359 |
+| **Ridge Regression** | 0.92 | 1105 |
+
+
+---

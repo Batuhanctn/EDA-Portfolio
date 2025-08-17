@@ -16,9 +16,14 @@ Here are the projects included in this portfolio:
     -   A detailed exploratory analysis of the chemical properties of red wine to determine their influence on its quality score. This project focuses purely on data visualization and statistical analysis without predictive modeling.
 
 4.  **[Diamonds Dataset EDA](./DiamondsEDA&Regression/)**
-   -    An exploratory data analysis of the Diamonds dataset, focusing on the relationship between diamond features (such as carat, cut, color, and clarity) and price. The project includes visualizations to highlight trends, correlations, and distributions within the dataset. Special emphasis is placed on understanding how different categorical and numerical attributes affect diamond pricing.
+    -   An exploratory data analysis of the Diamonds dataset, focusing on the relationship between diamond features (such as carat, cut, color, and clarity) and price. The project includes visualizations to highlight trends, correlations, and distributions within the dataset. Special emphasis is placed on understanding how different categorical and numerical attributes affect diamond pricing.
 
-     
+5.  **🏋️ [Gym Crowdedness EDA & Regression](./gymCrowdednessEDA&Regression/)**
+    -   An analysis of a gym crowdedness dataset, exploring factors like temperature, time of day, and day of the week to build a regression model that predicts the number of people. It features a comparison of multiple models, including **Linear Regression**, **Decision Tree**, and **K-Neighbors Regressor**, along with hyperparameter tuning.
+
+6.  **📈 [Income Prediction with Random Forest Classifier](./14-RandomForestClassifier/)**
+    -   This project focuses on a comprehensive EDA and a machine learning application to predict whether a person's income is above or below $50,000. It includes detailed data preprocessing and feature engineering steps, culminating in the development and fine-tuning of a **Random Forest Classifier** model.
+
 Each project folder contains a Jupyter Notebook (`.ipynb`) with the complete analysis and the corresponding dataset (`.csv`). For more detailed information, please refer to the `README.md` file within each project's directory.
 
 
@@ -31,4 +36,4 @@ Each project folder contains a Jupyter Notebook (`.ipynb`) with the complete ana
 -   Seaborn
 -   Scikit-learn
 -   LazyPredict
--   Jupyter Notebook- 
+-   Jupyter Notebook

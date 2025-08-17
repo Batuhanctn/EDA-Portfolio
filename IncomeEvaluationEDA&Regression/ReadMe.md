@@ -87,8 +87,3 @@ Eğitilen model, test veri seti üzerinde aşağıdaki sonuçları vermiştir:
     ```
     Bu matris, modelin 6996 gözlemi doğru bir şekilde `<=50K` olarak ve 1417 gözlemi doğru bir şekilde `>50K` olarak tahmin ettiğini göstermektedir.
 
-### Kurulum (Setup)
-Bu projeyi yerel olarak çalıştırmak için gerekli kütüphaneleri aşağıdaki komut ile kurabilirsiniz:
-
-```bash
-pip install -r requirements.txt

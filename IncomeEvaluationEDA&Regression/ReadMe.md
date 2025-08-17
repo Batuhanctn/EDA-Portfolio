@@ -1,89 +1,94 @@
 ### Income Prediction with Random Forest Classifier
-*Gelir Sınıflandırma Projesi: Random Forest Uygulaması*
+*Income Classification Project: Random Forest Application*
 
-### Genel Bakış (Overview)
-Bu proje, ABD'deki bireylerin özelliklerini içeren bir veri setini kullanarak yıllık gelirlerinin 50.000 doların altında mı yoksa üstünde mi olduğunu tahmin etmek için bir sınıflandırma modeli geliştirmeyi amaçlamaktadır. Proje kapsamında, veri setinin yapısını anlamak için detaylı bir Keşifçi Veri Analizi (EDA) yapılmış ve ardından en iyi performans gösteren modeli bulmak için Random Forest Sınıflandırıcısı kullanılarak makine öğrenmesi modeli oluşturulmuştur.
+### Overview
+This project aims to develop a classification model using a dataset of individuals' characteristics in the USA to predict whether their annual income is above or below $50,000. The project includes a detailed Exploratory Data Analysis (EDA) to understand the dataset's structure and a machine learning model built using a Random Forest Classifier to find the best-performing model.
 
-### İçerikler (Table of Contents)
-* [Veri Seti](#veri-seti)
-* [Kullanılan Kütüphaneler](#kullanılan-kütüphaneler)
-* [Keşifçi Veri Analizi (EDA)](#keşifçi-veri-analizi-eda)
-* [Veri Ön İşleme ve Özellik Mühendisliği](#veri-ön-i̇şleme-ve-özellik-mühendisliği)
-* [Model Oluşturma ve Değerlendirme](#model-oluşturma-ve-değerlendirme)
-* [Kurulum](#kurulum)
-
----
-
-### Veri Seti (Dataset)
-Bu projede kullanılan veri seti `income_evaluation.csv`'dir. Veri seti, toplamda **32,561 gözlem** ve **15 değişken** içermektedir. Değişkenler, yaş, meslek, eğitim seviyesi, medeni durum ve çalışma saatleri gibi demografik bilgileri içermektedir.
-
-**Veri Setindeki Tüm Değişkenler:**
-* `age`: Yaş (Sayısal)
-* `workclass`: Çalışma Sınıfı (Kategorik)
-* `finalweight` (orijinal adı: `fnlwgt`): Son ağırlık, tahmini demografik bilgiler için kullanılan bir ağırlıklandırma. (Sayısal)
-* `education`: Eğitim Seviyesi (Kategorik)
-* `education_num` (orijinal adı: `education-num`): Eğitim seviyesinin sayısal karşılığı. (Sayısal)
-* `marital_status`: Medeni Durum (Kategorik)
-* `occupation`: Meslek (Kategorik)
-* `relationship`: Aile İlişkisi (Kategorik)
-* `race`: Irk (Kategorik)
-* `sex`: Cinsiyet (Kategorik)
-* `capital_gain`: Sermaye Kazancı (Sayısal)
-* `capital_loss`: Sermaye Kaybı (Sayısal)
-* `hours_per_week`: Haftalık Çalışma Saati (Sayısal)
-* `native_country`: Anavatan (Kategorik)
-* `income`: Hedef değişken, gelirin `<=50K` veya `>50K` olup olmadığı. (Kategorik)
+### Table of Contents
+* [Dataset](#dataset)
+* [Libraries Used](#libraries-used)
+* [Exploratory Data Analysis (EDA)](#exploratory-data-analysis-eda)
+* [Data Preprocessing and Feature Engineering](#data-preprocessing-and-feature-engineering)
+* [Model Building and Evaluation](#model-building-and-evaluation)
+* [Setup](#setup)
 
 ---
 
-### Kullanılan Kütüphaneler (Libraries Used)
-* **pandas:** Veri manipülasyonu ve analizi için.
-* **numpy:** Sayısal işlemler için.
-* **seaborn & matplotlib:** Veri görselleştirme için.
-* **scikit-learn:** Makine öğrenmesi modeli oluşturma, veri ön işleme ve model değerlendirme için.
+### Dataset
+The dataset used in this project is `income_evaluation.csv`. It contains a total of **32,561 observations** and **15 variables**. The variables include demographic information such as age, occupation, education level, marital status, and hours worked per week.
+
+**All Variables in the Dataset:**
+* `age`: Age (Numerical)
+* `workclass`: Work Class (Categorical)
+* `finalweight` (original name: `fnlwgt`): A final weight used for demographic estimation. (Numerical)
+* `education`: Education Level (Categorical)
+* `education_num` (original name: `education-num`): Numerical equivalent of the education level. (Numerical)
+* `marital_status`: Marital Status (Categorical)
+* `occupation`: Occupation (Categorical)
+* `relationship`: Family Relationship (Categorical)
+* `race`: Race (Categorical)
+* `sex`: Sex (Categorical)
+* `capital_gain`: Capital Gain (Numerical)
+* `capital_loss`: Capital Loss (Numerical)
+* `hours_per_week`: Hours Worked Per Week (Numerical)
+* `native_country`: Native Country (Categorical)
+* `income`: Target variable, whether income is `<=50K` or `>50K`. (Categorical)
 
 ---
 
-### Keşifçi Veri Analizi (EDA)
-EDA aşaması, veri setinin derinlemesine incelenmesini ve veri yapısının anlaşılmasını sağlamıştır. Yapılan temel analizler şunlardır:
-
-* **Veri Tipleri ve Eksik Değerler:** Veri setinin 6 sayısal ve 9 kategorik sütunu vardır. Nominal olarak eksik değer bulunmamaktadır. Ancak `workclass`, `occupation` ve `native_country` gibi bazı kategorik değişkenlerde ' ?' şeklinde eksik veri işaretleri tespit edilmiştir. Bu değerler daha sonra mod değeri ile doldurulmuştur.
-
-* **Tek Değişkenli Analiz:** Her bir değişkenin dağılımı incelenmiş, özellikle kategorik değişkenlerin unique değerleri ve sayıları kontrol edilmiştir.
-
----
-
-### Veri Ön İşleme ve Özellik Mühendisliği (Data Preprocessing and Feature Engineering)
-Modelin daha iyi performans göstermesi için veri ön işleme ve özellik mühendisliği adımları aşağıdaki gibi sıralanmıştır:
-
-1.  **Sütun Adlarını Düzenleme:** Orijinal veri setindeki bazı sütun adları, okunabilirliği artırmak ve boşlukları gidermek amacıyla yeniden adlandırılmıştır (Örn: `fnlwgt` -> `finalweight`, `education-num` -> `education_num`, `capital-gain` -> `capital_gain`).
-2.  **Eksik Değerlerin Doldurulması:** Kategorik sütunlardaki (' ?') eksik değerler, her bir sütunun en sık görülen değeriyle (`mode`) doldurulmuştur. Bu, veri kaybını önlerken modelin performansını artırmaya yardımcı olmuştur.
-3.  **Değişkenlerin Ayrılması:** Veri seti, sayısal ve kategorik sütunlar olarak ikiye ayrılmıştır. Bu ayrım, her değişken türüne uygun ön işleme adımlarının uygulanabilmesi için yapılmıştır.
-4.  **Hedef Değişkenin Kodlanması:** Hedef değişken olan `income`, `LabelEncoder` kullanılarak kategorik değerlerden sayısal değerlere dönüştürülmüştür. Bu sayede `<=50K` 0'a ve `>50K` 1'e çevrilerek modelin çalışabileceği formata getirilmiştir.
-5.  **Verinin Ölçeklendirilmesi:** Makine öğrenmesi modellerinde aykırı değerlerin (outliers) etkisini azaltmak ve farklı ölçeklerdeki değişkenlerin eşit ağırlığa sahip olması için sayısal değişkenler **RobustScaler** kullanılarak ölçeklendirilmiştir.
-6.  **Eğitim ve Test Kümelerine Ayırma:** Modelin performansını objektif bir şekilde değerlendirebilmek için veri seti, %70'i eğitim ve %30'u test verisi olacak şekilde ikiye ayrılmıştır.
+### Libraries Used
+* **pandas:** For data manipulation and analysis.
+* **numpy:** For numerical operations.
+* **seaborn & matplotlib:** For data visualization.
+* **scikit-learn:** For machine learning model building, data preprocessing, and model evaluation.
 
 ---
 
-### Model Oluşturma ve Değerlendirme (Model Building and Evaluation)
-Bu projede bir **Random Forest Sınıflandırma Modeli** kullanılmıştır. Modelin performansını en üst düzeye çıkarmak için `RandomizedSearchCV` ile hiperparametre ayarı yapılmıştır.
+### Exploratory Data Analysis (EDA)
+The EDA phase involved a deep dive into the dataset to understand its structure. Key analyses performed include:
 
-**En iyi modelin hiperparametreleri:**
+* **Data Types and Missing Values:** The dataset has 6 numerical and 9 categorical columns. There are no nominally missing values. However, some categorical variables like `workclass`, `occupation`, and `native_country` contain ' ?' as a marker for missing data. These values were later filled with the mode.
+
+* **Univariate Analysis:** The distribution of each variable was examined, and the unique values and counts for categorical variables were checked.
+
+---
+
+### Data Preprocessing and Feature Engineering
+To improve the model's performance, the following data preprocessing and feature engineering steps were performed:
+
+1.  **Column Renaming:** Some original column names were renamed to improve readability and remove spaces (e.g., `fnlwgt` -> `finalweight`, `education-num` -> `education_num`, `capital-gain` -> `capital_gain`).
+2.  **Handling Missing Values:** The ' ?' missing values in the categorical columns (`workclass`, `occupation`, and `native_country`) were imputed with the mode of each respective column. This prevents data loss and helps improve model performance.
+3.  **Variable Separation:** The dataset was split into numerical and categorical columns to apply different preprocessing steps tailored to each data type.
+4.  **Target Variable Encoding:** The target variable `income` was converted from categorical to numerical values using `LabelEncoder`. This transformed `<=50K` to 0 and `>50K` to 1, making it a suitable format for the model.
+5.  **Data Scaling:** To mitigate the effect of outliers and ensure that variables with different scales are weighted equally by the model, numerical variables were scaled using **RobustScaler**.
+6.  **Training and Test Split:** The dataset was split into a 70% training set and a 30% test set to objectively evaluate the model's performance.
+
+---
+
+### Model Building and Evaluation
+A **Random Forest Classification Model** was used in this project. Hyperparameter tuning was performed with `RandomizedSearchCV` to maximize the model's performance.
+
+**Best Model Hyperparameters:**
 * `n_estimators`: 200
 * `min_samples_split`: 2
 * `max_features`: 'sqrt'
 * `max_depth`: 15
 
-**Model Performans Metrikleri:**
-Eğitilen model, test veri seti üzerinde aşağıdaki sonuçları vermiştir:
-* **Accuracy Score (Doğruluk Puanı):** `0.8529`
-* **Classification Report (Sınıflandırma Raporu):**
-    * `0` sınıfı (`<=50K`) için `precision` değeri `0.88`, `recall` değeri `0.94` ve `f1-score` değeri `0.91` olarak bulunmuştur.
-    * `1` sınıfı (`>50K`) için `precision` değeri `0.78`, `recall` değeri `0.60` ve `f1-score` değeri `0.68` olarak bulunmuştur.
-* **Confusion Matrix (Karmaşıklık Matrisi):**
+**Model Performance Metrics:**
+The trained model produced the following results on the test dataset:
+* **Accuracy Score:** `0.8529`
+* **Classification Report:**
+    * For class `0` (`<=50K`), `precision` was `0.88`, `recall` was `0.94`, and `f1-score` was `0.91`.
+    * For class `1` (`>50K`), `precision` was `0.78`, `recall` was `0.60`, and `f1-score` was `0.68`.
+* **Confusion Matrix:**
     ```
     [[6996  411]
      [ 945 1417]]
     ```
-    Bu matris, modelin 6996 gözlemi doğru bir şekilde `<=50K` olarak ve 1417 gözlemi doğru bir şekilde `>50K` olarak tahmin ettiğini göstermektedir.
+    This matrix indicates that the model correctly predicted 6996 observations as `<=50K` and 1417 observations as `>50K`.
 
+### Setup
+To run this project locally, you can install the necessary libraries using the following command:
+
+```bash
+pip install -r requirements.txt

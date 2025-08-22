@@ -23,7 +23,7 @@ Here are the projects included in this portfolio:
 
 6.  **📈 [Income Prediction with Random Forest Classifier](./RandomForestClassifier/)**
     -   This project focuses on a comprehensive EDA and a machine learning application to predict whether a person's income is above or below $50,000. It includes detailed data preprocessing and feature engineering steps, culminating in the development and fine-tuning of a **Random Forest Classifier** model.
-7.  **🚗 [Car Price Regression with Adaboost Regression](./CarPriceRegressionAdaboostRegression/)**
+7.  **🚗 [Car Price Regression with Adaboost Regression](./CarPriceAdaboostRegression/)**
     -   An in-depth analysis of a second-hand car dataset to predict vehicle prices. This project features extensive data preprocessing and a mixed-strategy encoding (**Frequency Encoding** for high-cardinality features and **One-Hot Encoding** for others). The core of the project is the development and optimization of an **AdaBoost Regressor** model using **RandomizedSearchCV** to fine-tune hyperparameters.
 
 Each project folder contains a Jupyter Notebook (`.ipynb`) with the complete analysis and the corresponding dataset (`.csv`). For more detailed information, please refer to the `README.md` file within each project's directory.

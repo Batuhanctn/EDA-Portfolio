@@ -6,7 +6,7 @@ This repository contains a collection of my Exploratory Data Analysis (EDA) proj
 
 Here are the projects included in this portfolio:
 
-1.  **[Student Performance EDA & Regression](./Student_PerformanceEDA&Regression/)**
+1.  **[Student Performance EDA & Regression](./StudentPerformanceEDA&RegressionwithLazyPredict/)**
     -   An analysis of student performance data, including the development of a Linear Regression model to predict performance index based on study habits and other factors. This project also features a `LazyPredict` implementation to benchmark multiple regression models.
 
 2.  **[Grades Dataset EDA & Linear Regression](./GradesDatasetEDA/)**
@@ -21,7 +21,7 @@ Here are the projects included in this portfolio:
 5.  **🏋️ [Gym Crowdedness EDA & Regression](./gymCrowdednessEDA&Regression/)**
     -   An analysis of a gym crowdedness dataset, exploring factors like temperature, time of day, and day of the week to build a regression model that predicts the number of people. It features a comparison of multiple models, including **Linear Regression**, **Decision Tree**, and **K-Neighbors Regressor**, along with hyperparameter tuning.
 
-6.  **📈 [Income Prediction with Random Forest Classifier](./RandomForestClassifier/)**
+6.  **📈 [Income Prediction with Random Forest Classifier](./IncomeEvaluationwithRandomForestClassification/)**
     -   This project focuses on a comprehensive EDA and a machine learning application to predict whether a person's income is above or below $50,000. It includes detailed data preprocessing and feature engineering steps, culminating in the development and fine-tuning of a **Random Forest Classifier** model.
 7.  **🚗 [Car Price Regression with Adaboost Regression](./CarPriceRegressionwithAdaboostRegression/)**
     -   An in-depth analysis of a second-hand car dataset to predict vehicle prices. This project features extensive data preprocessing and a mixed-strategy encoding (**Frequency Encoding** for high-cardinality features and **One-Hot Encoding** for others). The core of the project is the development and optimization of an **AdaBoost Regressor** model using **RandomizedSearchCV** to fine-tune hyperparameters.

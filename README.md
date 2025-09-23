@@ -26,6 +26,9 @@ Here are the projects included in this portfolio:
 7.  **🚗 [Car Price Regression with Adaboost Regression](./CarPriceRegressionwithAdaboostRegression/)**
     -   An in-depth analysis of a second-hand car dataset to predict vehicle prices. This project features extensive data preprocessing and a mixed-strategy encoding (**Frequency Encoding** for high-cardinality features and **One-Hot Encoding** for others). The core of the project is the development and optimization of an **AdaBoost Regressor** model using **RandomizedSearchCV** to fine-tune hyperparameters.
 
+8.  **🌍 [Country Development Analysis: Unsupervised Learning](./CountryUnsupervised/)**
+    -   A comprehensive unsupervised learning project that analyzes socioeconomic data from 167 countries to classify them based on budget allocation needs. The project features **PCA** for dimensionality reduction and compares multiple clustering algorithms (**K-Means**, **Hierarchical Clustering**, **DBSCAN**, **HDBSCAN**) to categorize countries into "Budget Needed", "In Between", and "No Budget Needed" groups. Includes interactive geographical visualizations using **Plotly**.
+
 Each project folder contains a Jupyter Notebook (`.ipynb`) with the complete analysis and the corresponding dataset (`.csv`). For more detailed information, please refer to the `README.md` file within each project's directory.
 
 
@@ -36,6 +39,8 @@ Each project folder contains a Jupyter Notebook (`.ipynb`) with the complete ana
 -   NumPy
 -   Matplotlib
 -   Seaborn
+-   Plotly
 -   Scikit-learn
+-   HDBSCAN
 -   LazyPredict
 -   Jupyter Notebook

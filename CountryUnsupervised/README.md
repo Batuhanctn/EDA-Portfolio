@@ -79,16 +79,16 @@ Projede dört farklı kümeleme algoritması karşılaştırıldı:
 
 ## 🏆 Model Performans Karşılaştırması
 
-Tüm kümeleme algoritmalarının performansı Silhouette Score metriği ile değerlendirilmiştir:
+Tüm kümeleme algoritmalarının performansı Silhouette Score metriği ile değerlendirilmiştir. **Önemli:** Yoğunluk tabanlı algoritmalar (DBSCAN, HDBSCAN) için silhouette score hesabında noise noktaları (-1 etiketli) **hariç tutulmuştur**, çünkü silhouette score noise noktaları için tanımlı değildir.
 
-| Algoritma | Silhouette Score | Küme Sayısı | Özellikler |
-|---|---|---|---|
-| **K-Means** | **0.439** | 3 | En yüksek silhouette score |
-| **Hierarchical Clustering** | 0.439 | 3 | K-Means ile benzer performans |
-| **HDBSCAN** | 0.195 | 4 (Noise dahil) | Noise detection özelliği |
-| **DBSCAN** | 0.134 | 4 (Noise dahil) | En düşük silhouette score |
+| Algoritma | Silhouette Score | Küme Sayısı | Noise Oranı | Özellikler |
+|---|---|---|---|---|
+| **HDBSCAN** | **0.497** 🥇 | 3 | 30.5% | En yüksek score, adaptive clustering, outlier detection |
+| **K-Means** | **0.439** 🥈 | 3 | 0% | Sabit küme sayısı, noise detection yok |
+| **Hierarchical Clustering** | **0.439** 🥈 | 3 | 0% | K-Means ile benzer performans |
+| **DBSCAN** | **0.298** 🥉 | 3 | 19.2% | Parametre optimizasyonu gerekli |
 
-**K-Means algoritması** en yüksek Silhouette Score'a sahip olarak en başarılı kümeleme sonucunu vermiştir.
+**HDBSCAN algoritması** noise noktaları hariç tutularak hesaplanan silhouette score'da en yüksek performansı göstermiştir. Bu algoritmanın adaptive clustering ve outlier detection özelliklerinin veri setine çok uygun olduğu görülmektedir.
 
 ---
 
@@ -116,12 +116,14 @@ Tüm kümeleme algoritmalarının performansı Silhouette Score metriği ile de�
 ## 📝 Sonuç ve Değerlendirme
 
 Bu projenin sonunda:
-- **K-Means algoritması** en iyi performansı gösterdi (Silhouette Score: 0.439)
-- Ülkeler başarıyla üç kategoriye ayrıldı
+- **HDBSCAN algoritması** en iyi performansı gösterdi (Silhouette Score: 0.497 - noise hariç)
+- **Adaptive clustering** ve **outlier detection** özellikleri sayesinde veri yapısına en uygun sonuçları verdi
+- **Noise detection** ile belirsiz durumlu ülkeler (%30.5) başarıyla tespit edildi
+- Ülkeler başarıyla üç ana kategoriye + noise kategorisine ayrıldı
 - PCA ile boyut azaltma, kümeleme performansını artırdı
-- Sosyoekonomik göstergeler bütçe ihtiyacı için güçlü bir belirleyici olduğu kanıtlandı
+- **Metodolojik öğrenme:** Density-based clustering algoritmaları için silhouette score hesabında noise noktalarının hariç tutulması gerektiği anlaşıldı
 
-Bu analiz, uluslararası yardım kuruluşları ve politika yapıcılar için ülkelerin bütçe ihtiyaçlarını objektif bir şekilde değerlendirme imkanı sunmaktadır.
+Bu analiz, uluslararası yardım kuruluşları ve politika yapıcılar için ülkelerin bütçe ihtiyaçlarını objektif bir şekilde değerlendirme imkanı sunmaktadır. HDBSCAN'in noise detection özelliği, özel dikkat gerektiren "belirsiz durumdaki ülkeleri" de tanımlayabilmektedir.
 
 ---
 
